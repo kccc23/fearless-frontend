@@ -55,7 +55,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
   } catch (error) {
       console.error('error', error);
-      const htmlAlert = createAlert('There is error');
+      const htmlAlert = createAlert(error);
       const divAlert = document.querySelector('.error-alert');
       divAlert.innerHTML = htmlAlert;
     }
