@@ -1,11 +1,11 @@
-function createCard(name, description, pictureUrl, startDateStr, endDateStr) {
+function createCard(name, description, pictureUrl, startDateStr, endDateStr, location) {
     return `
       <div class="col-md-4 mb-3">
         <div class="card shadow">
           <img src="${pictureUrl}" class="card-img-top">
           <div class="card-body">
             <h5 class="card-title">${name}</h5>
-            
+            <h6 class="card-subtitle mb-2 text-muted">${location}</h6>
             <p class="card-text">${description}</p>
           </div>
           <div class="card-footer text-muted">
@@ -14,7 +14,15 @@ function createCard(name, description, pictureUrl, startDateStr, endDateStr) {
         </div>
       </div>
     `;
-  }
+}
+
+function createAlert(error) {
+    return `
+      <div class="alert alert-warning" role="alert">
+        Error: ${error}
+      </div>
+    `;
+}
 
 window.addEventListener('DOMContentLoaded', async () => {
   const url = 'http://localhost:8000/api/conferences/';
@@ -37,12 +45,18 @@ window.addEventListener('DOMContentLoaded', async () => {
           const endDate = new Date(details.conference.ends);
           const startDateStr = startDate.toLocaleDateString();
           const endDateStr = endDate.toLocaleDateString();
-          const html = createCard(name, description, pictureUrl, startDateStr, endDateStr);
+          const location = details.conference.location.name;
+          const html = createCard(name, description, pictureUrl, startDateStr, endDateStr, location);
           const row = document.querySelector('#conferences-row');
           row.innerHTML += html;
         }
       }
 
     }
-  } catch (error) { console.error('error', error); }
+  } catch (error) {
+      console.error('error', error);
+      const htmlAlert = createAlert('There is error');
+      const divAlert = document.querySelector('.error-alert');
+      divAlert.innerHTML = htmlAlert;
+    }
 });
