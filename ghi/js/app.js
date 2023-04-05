@@ -16,6 +16,22 @@ function createCard(name, description, pictureUrl, startDateStr, endDateStr, loc
     `;
 }
 
+function createPlaceholderCard() {
+  return `
+    <div class="col-md-4 mb-3">
+      <div class="card shadow">
+        <div class="card-body">
+          <div class="placeholder-glow">
+            <span class="placeholder placeholder-lg"></span>
+            <span class="placeholder"></span>
+            <span class="placeholder"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function createAlert(error) {
     return `
       <div class="alert alert-warning" role="alert">
