@@ -32,10 +32,10 @@ function createPlaceholderCard() {
   `;
 }
 
-function createAlert(error) {
+function createAlert() {
     return `
       <div class="alert alert-warning" role="alert">
-        Error: ${error}
+      Oops! There's no conferences to display. Try again later.
       </div>
     `;
 }
@@ -71,7 +71,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
   } catch (error) {
       console.error('error', error);
-      const htmlAlert = createAlert(error);
+      const htmlAlert = createAlert();
       const divAlert = document.querySelector('.error-alert');
       divAlert.innerHTML = htmlAlert;
     }
