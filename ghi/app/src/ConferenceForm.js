@@ -11,7 +11,6 @@ function ConferenceForm() {
         data.ends = ends;
         data.description = description;
         data.location = location
-        console.log(data);
 
         const conferenceUrl = ' http://localhost:8000/api/conferences/';
         const fetchConfig = {
@@ -22,7 +21,6 @@ function ConferenceForm() {
         const response = await fetch(conferenceUrl, fetchConfig);
         if (response.ok) {
             const newConference = await response.json();
-            console.log(newConference);
 
             setName('');
             setStarts('');

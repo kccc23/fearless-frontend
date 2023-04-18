@@ -50,7 +50,7 @@ def send_message(queue_name, body):
 
 
 @require_http_methods(["GET", "POST"])
-def api_list_presentations(request, conference_id):
+def api_list_presentations(request, conference_id=None):
     """
     Lists the presentation titles and the link to the
     presentation for the specified conference id.
@@ -73,7 +73,10 @@ def api_list_presentations(request, conference_id):
     }
     """
     if request.method == "GET":
-        presentations = Presentation.objects.filter(conference=conference_id)
+        if conference_id is None:
+            presentations = Presentation.objects.all()
+        else:
+            presentations = Presentation.objects.filter(conference=conference_id)
         return JsonResponse(
             {"presentations": presentations},
             encoder=PresentationListEncoder,
@@ -83,7 +86,8 @@ def api_list_presentations(request, conference_id):
 
         # Get the Conference object and put it in the content dict
         try:
-            conference = Conference.objects.get(id=conference_id)
+            # conference = Conference.objects.get(id=conference_id)
+            conference = Conference.objects.get(id=content["conference"])
             content["conference"] = conference
         except Conference.DoesNotExist:
             return JsonResponse(

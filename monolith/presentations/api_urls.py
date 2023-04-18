@@ -9,6 +9,10 @@ from .api_views import (
 
 
 urlpatterns = [
+    path("presentations/",
+         api_list_presentations,
+         name="api_create_presentation",
+    ),
     path(
         "conferences/<int:conference_id>/presentations/",
         api_list_presentations,

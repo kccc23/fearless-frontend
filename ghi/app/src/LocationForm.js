@@ -91,7 +91,7 @@ function LocationForm(props) {
                   <label htmlFor="city">City</label>
                 </div>
                 <div className="mb-3">
-                  <select onChange={handleStateChange} required value={state} name="state" id="state" className="form-select">
+                  <select onChange={handleStateChange} value={state} required name="state" id="state" className="form-select">
                     <option value="">Choose a state</option>
                     {states.map(state => (
                         <option key={state.abbreviation} value={state.abbreviation}>

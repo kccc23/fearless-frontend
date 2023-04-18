@@ -9,7 +9,6 @@ function AttendeeForm() {
         data.name = name;
         data.email = email;
         data.conference = conference;
-        console.log(data);
 
         const attendeeUrl = 'http://localhost:8001/api/attendees/';
         const fetchConfig = {
@@ -20,7 +19,6 @@ function AttendeeForm() {
         const response = await fetch(attendeeUrl, fetchConfig);
         if (response.ok) {
             const newAttendee = await response.json();
-            console.log(newAttendee);
 
             setName('');
             setEmail('');
@@ -75,7 +73,7 @@ function AttendeeForm() {
     }
 
     return (
-      <div className="my-5">
+      <div className="my-5 container">
       <div className="row">
         <div className="col col-sm-auto">
           <img width="300" className="bg-white rounded shadow d-block mx-auto mb-4" src="/logo.svg" />
