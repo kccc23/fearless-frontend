@@ -4,7 +4,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         const statesResponse = await fetch(statesUrl);
         if (statesResponse.ok) {
             const statesData = await statesResponse.json();
-            const selectTag = document.querySelector('#state');
+            const selectTag = document.getElementById('state');
             for (let state of statesData.states) {
                 const option = document.createElement('option');
                 option.value = state.abbreviation;
